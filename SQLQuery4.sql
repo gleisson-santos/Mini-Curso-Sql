@@ -46,4 +46,23 @@ classname,
 COUNT(productname) as 'QtdProdutos',
 round(avg(unitprice), 2) as 'PrecoMedio'
 from DimProduct
+-- Filtrar apenas a classe economica
+where ClassName='Economy'
+group by brandname, classname
+
+-- Qual a media de preços da classe economica
+select
+ClassName, 
+round(avg(unitprice), 2) as 'PrecoMedio'
+from DimProduct
+where ClassName='Economy'
+group by ClassName
+
+-- Qual a media de preço da contoso da classe economica
+select
+brandname,
+classname,
+round(avg(unitprice), 2) as 'PrecoMedio'
+from DimProduct
+where ClassName='Economy' and BrandName='contoso'
 group by brandname, classname
